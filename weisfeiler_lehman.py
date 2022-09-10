@@ -30,7 +30,7 @@ class Node:
   def __init__(self, name, neighbours=''):
     self.name = name
     self.neighbours = neighbours.split()
-    self.label = 1
+    self.label = len(self.neighbours)
 
   def __repr__(self):
     return f'Node({self.name}, neighbours={self.neighbours})'
