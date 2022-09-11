@@ -1,5 +1,6 @@
 import numpy as np
 import graphviz
+import itertools
 
 
 class Node:
@@ -36,12 +37,14 @@ class Graph:
 
 
 def draw_graph(graph):
-  dot = graphviz.Graph()
-  for node in graph:
+  dot = graphviz.Graph(strict=True)
+  edge_list = []
+  for node in graph.nodes.values():
     dot.node(node.name)
     edges = [f'{node.name}{neighbour}' for neighbour in node.neighbours]
-    dot.edges = edges
-  dot.render()
+    edge_list.extend(edges)
+  dot.edges(edge_list) 
+  dot.render(view=True)
 
 
 if __name__ == '__main__':
@@ -56,4 +59,4 @@ if __name__ == '__main__':
   C = Node('C', 'A')
 
   graph = Graph([A, B, C])
-  print(graph['A'])
+  draw_graph(graph)
